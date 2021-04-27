@@ -29,7 +29,7 @@
       "name": "Caméra",
       "price": "600",
       "quantity": "70",
-      "selected": true,
+      "selected": false,
       "available": false
     }
   ]

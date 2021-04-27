@@ -1,3 +1,4 @@
+import { EventDriverService } from './../../../state/event.driver.service';
 import { ProductActionsTypes, ActionEvent } from './../../../state/product.state';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
@@ -8,31 +9,31 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class ProductsNavBarComponent implements OnInit {
 
-  @Output() productEventEmitter: EventEmitter<ActionEvent> = new EventEmitter<ActionEvent>();
+  //@Output() productEventEmitter: EventEmitter<ActionEvent> = new EventEmitter<ActionEvent>();
 
-  constructor() { }
+  constructor(private eventDriverService: EventDriverService) { }
 
   ngOnInit(): void {
   }
 
   onGetAllProducts(){
-    this.productEventEmitter.emit({type: ProductActionsTypes.GET_ALL_PRODUCTS});
+    this.eventDriverService.publishEvent({type: ProductActionsTypes.GET_ALL_PRODUCTS});
   }
 
   onGetSelectedProducts(){
-    this.productEventEmitter.emit({type: ProductActionsTypes.GET_SELECTED_PRODUCTS});
+    this.eventDriverService.publishEvent({type: ProductActionsTypes.GET_SELECTED_PRODUCTS});
   }
 
   onGetAvailableProducts(){
-    this.productEventEmitter.emit({type: ProductActionsTypes.GET_AVAILABLE_PRODUCTS});
+    this.eventDriverService.publishEvent({type: ProductActionsTypes.GET_AVAILABLE_PRODUCTS});
   }
 
   onNewProduct(){
-    this.productEventEmitter.emit({type: ProductActionsTypes.NEW_PRODUCTS});
+    this.eventDriverService.publishEvent({type: ProductActionsTypes.NEW_PRODUCTS});
   }
 
   onSearch(dataForm: any){
-    this.productEventEmitter.emit({
+    this.eventDriverService.publishEvent({
       type: ProductActionsTypes.SEARCH_PRODUCTS, 
       payload: dataForm
     });
